@@ -80,3 +80,31 @@ npm run build
 - Develop on `dev` branch.
 - Open Pull Request from `dev` -> `main` when ready for mentor review.
 - Do not merge PR before formal grading.
+
+## Deployment (Capstone `dev`)
+
+### Backend on Render
+1. In Render, create a new Web Service from this repository.
+2. Use Blueprint (`render.yaml`) or set manually:
+	- Root Directory: `server`
+	- Build Command: `npm install`
+	- Start Command: `npm start`
+3. Add environment variables in Render:
+	- `MONGODB_URI`
+	- `JWT_SECRET`
+	- `NODE_ENV=production`
+4. Deploy and copy the backend URL (example: `https://capstone-bookstore-api.onrender.com`).
+
+### Frontend on Netlify
+1. In Netlify, import the same repository.
+2. Set branch to `dev` for your dev deployment.
+3. Build settings (also defined in `netlify.toml`):
+	- Build command: `npm run build`
+	- Publish directory: `build`
+4. Add environment variable in Netlify:
+	- `REACT_APP_HOST=https://your-render-backend-url.onrender.com`
+5. Deploy and validate app + API flows.
+
+### Notes
+- Frontend and backend must use separate hosts in production (Netlify + Render).
+- Keep real secrets only in platform environment settings, never in committed `.env` files.

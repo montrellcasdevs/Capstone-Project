@@ -4,6 +4,7 @@
 
 - Full project overview: [../README.md](../README.md)
 - API specification plan: [../API_PLAN.md](../API_PLAN.md)
+- Deployment setup (Netlify + Render): [../README.md](../README.md#deployment-capstone-dev)
 
 ## 🚀 Setup Instructions
 
