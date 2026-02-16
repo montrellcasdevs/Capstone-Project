@@ -1,5 +1,10 @@
 # Bookstore Backend - MongoDB Atlas Setup
 
+## 📚 Project Documentation
+
+- Full project overview: [../README.md](../README.md)
+- API specification plan: [../API_PLAN.md](../API_PLAN.md)
+
 ## 🚀 Setup Instructions
 
 ### 1. MongoDB Atlas Configuration
