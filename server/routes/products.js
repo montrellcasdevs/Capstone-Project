@@ -16,7 +16,7 @@ router.get('/products', async (req, res) => {
         const products = await Product.find(query);
         res.json(products);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error: error.message });
+        res.status(500).json({ message: 'We could not load products right now. Please try again.' });
     }
 });
 
@@ -29,7 +29,7 @@ router.get('/products/:id', async (req, res) => {
         }
         res.json(product);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error: error.message });
+        res.status(500).json({ message: 'We could not load this product right now. Please try again.' });
     }
 });
 
@@ -39,7 +39,7 @@ router.get('/featured_products', async (req, res) => {
         const products = await Product.find({ best_seller: true });
         res.json(products);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error: error.message });
+        res.status(500).json({ message: 'We could not load featured products right now. Please try again.' });
     }
 });
 

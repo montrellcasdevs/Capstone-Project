@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).json({ message: 'Something went wrong!' });
+    res.status(500).json({ message: 'We could not complete your request right now. Please try again.' });
 });
 
 app.listen(PORT, () => {

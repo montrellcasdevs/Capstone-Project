@@ -23,7 +23,7 @@ router.get('/users/:id', authMiddleware, async (req, res) => {
             email: user.email
         });
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error: error.message });
+        res.status(500).json({ message: 'We could not load your profile right now. Please try again.' });
     }
 });
 
@@ -39,7 +39,7 @@ router.get('/orders', authMiddleware, async (req, res) => {
         const orders = await Order.find({ 'user.id': userId }).sort({ createdAt: -1 });
         res.json(orders);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error: error.message });
+        res.status(500).json({ message: 'We could not load your orders right now. Please try again.' });
     }
 });
 
@@ -62,7 +62,7 @@ router.post('/orders', authMiddleware, async (req, res) => {
         await order.save();
         res.status(201).json(order);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error: error.message });
+        res.status(500).json({ message: 'We could not place your order right now. Please try again.' });
     }
 });
 

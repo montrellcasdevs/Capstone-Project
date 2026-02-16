@@ -40,7 +40,7 @@ router.post('/register', async (req, res) => {
             }
         });
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error: error.message });
+        res.status(500).json({ message: 'We could not process your request right now. Please try again.' });
     }
 });
 
@@ -73,7 +73,7 @@ router.post('/login', async (req, res) => {
             }
         });
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error: error.message });
+        res.status(500).json({ message: 'We could not process your request right now. Please try again.' });
     }
 });
 
