@@ -1,4 +1,8 @@
-function buildError(status, fallbackMessage){
+function buildError(status, path){
+    if(status === 401 && path === "/login"){
+        return { message: "Your email or password is incorrect. Please try again.", status };
+    }
+
     if(status === 401){
         return { message: "Your session has expired. Please log in again.", status };
     }
@@ -7,18 +11,26 @@ function buildError(status, fallbackMessage){
         return { message: "You do not have permission to perform this action.", status };
     }
 
+    if(status === 404){
+        return { message: "We could not find what you were looking for.", status };
+    }
+
+    if(status === 400){
+        return { message: "We could not complete that request. Please check your details and try again.", status };
+    }
+
     if(status >= 500){
         return { message: "Something went wrong on our side. Please try again shortly.", status };
     }
 
-    return { message: fallbackMessage || "We could not complete your request.", status };
+    return { message: "We could not complete your request.", status };
 }
 
 export async function apiRequest(path, options = {}){
     const host = process.env.REACT_APP_HOST;
 
     if(!host){
-        throw { message: "The app is not configured correctly right now. Please try again later.", status: 0 }; //eslint-disable-line
+        throw { message: "Our service is temporarily unavailable. Please try again later.", status: 0 }; //eslint-disable-line
     }
 
     let response;
@@ -36,8 +48,7 @@ export async function apiRequest(path, options = {}){
     }
 
     if(!response.ok){
-        const serverMessage = data?.message || response.statusText;
-        throw buildError(response.status, serverMessage); //eslint-disable-line
+        throw buildError(response.status, path); //eslint-disable-line
     }
 
     return data;

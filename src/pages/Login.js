@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { useTitle } from "../hooks/useTitle";
 import { login } from "../services";
+import { toCustomerErrorMessage } from "../utils/errorMessage";
 
 export const Login = () => {
   useTitle("Login");
@@ -18,9 +19,9 @@ export const Login = () => {
         password: password.current.value
       }
       const data = await login(authDetail);
-      data.accessToken ? navigate("/products") : toast.error(data);
+      data.accessToken ? navigate("/products") : toast.error("We could not log you in. Please try again.");
     } catch(error){
-      toast.error(error.message, {closeButton: true, position: "bottom-center"});
+      toast.error(toCustomerErrorMessage(error), {closeButton: true, position: "bottom-center"});
     }
   }
   
@@ -33,9 +34,9 @@ export const Login = () => {
         password: password.current.value
       }
       const data = await login(authDetail);
-      data.accessToken ? navigate("/products") : toast.error(data);
+      data.accessToken ? navigate("/products") : toast.error("Guest login is unavailable right now. Please try again.");
     } catch(error){
-      toast.error(error.message, {closeButton: true, position: "bottom-center"});
+      toast.error(toCustomerErrorMessage(error), {closeButton: true, position: "bottom-center"});
     }
   }
 

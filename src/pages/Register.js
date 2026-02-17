@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useTitle } from "../hooks/useTitle";
 import { register } from '../services';
+import { toCustomerErrorMessage } from "../utils/errorMessage";
 
 export const Register = () => {
   useTitle("Register");
@@ -16,9 +17,9 @@ export const Register = () => {
         password: event.target.password.value
       }
       const data = await register(authDetail);
-      data.accessToken ? navigate("/products") : toast.error(data);
+      data.accessToken ? navigate("/products") : toast.error("We could not create your account. Please try again.");
     } catch(error){
-      toast.error(error.message, {closeButton: true, position: "bottom-center"});
+      toast.error(toCustomerErrorMessage(error), {closeButton: true, position: "bottom-center"});
     }
   }
 

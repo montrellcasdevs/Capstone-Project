@@ -8,6 +8,7 @@ import { FilterBar } from "./components/FilterBar";
 import { useFilter } from "../../context";
 import { getProductList } from "../../services";
 import { toast } from "react-toastify";
+import { toCustomerErrorMessage } from "../../utils/errorMessage";
 
 export const ProductsList = () => {
   const { products, initialProductList } = useFilter();
@@ -22,7 +23,7 @@ export const ProductsList = () => {
         const data = await getProductList(searchTerm);
         initialProductList(data); 
       } catch(error){
-        toast.error(error.message, {closeButton: true, position: "bottom-center" });
+        toast.error(toCustomerErrorMessage(error), {closeButton: true, position: "bottom-center" });
       }
     }
     fetchProducts();

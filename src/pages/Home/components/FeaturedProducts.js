@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { ProductCard } from "../../../components";
 import { getFeaturedList } from "../../../services";
+import { toCustomerErrorMessage } from "../../../utils/errorMessage";
 
 export const FeaturedProducts = () => {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,7 @@ export const FeaturedProducts = () => {
         const data = await getFeaturedList();
         setProducts(data);
       } catch(error){
-        toast.error(error.message, {closeButton: true, position: "bottom-center" });
+        toast.error(toCustomerErrorMessage(error), {closeButton: true, position: "bottom-center" });
       }      
     }
     fetchProducts();

@@ -4,6 +4,7 @@ import { useTitle } from "../../hooks/useTitle";
 import { getUserOrders } from "../../services";
 import { DashboardCard } from "./components/DashboardCard";
 import { DashboardEmpty } from "./components/DashboardEmpty";
+import { toCustomerErrorMessage } from "../../utils/errorMessage";
 
 export const DashboardPage = () => {
   const [orders, setOrders] = useState([]);
@@ -15,7 +16,7 @@ export const DashboardPage = () => {
         const data = await getUserOrders();
         setOrders(data);
       } catch(error){
-        toast.error(error.message, { closeButton: true, position: "bottom-center" });
+        toast.error(toCustomerErrorMessage(error), { closeButton: true, position: "bottom-center" });
       }      
     }
     fetchOrders();

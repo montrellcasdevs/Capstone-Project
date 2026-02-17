@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getUser, logout } from "../../services";
+import { toCustomerErrorMessage } from "../../utils/errorMessage";
 
 export const DropdownLoggedIn = ({setDropdown}) => {
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ export const DropdownLoggedIn = ({setDropdown}) => {
                 const data = await getUser();
                 data.email ? setUser(data) : handleLogout();
             } catch(error){
-                toast.error(error.message, { closeButton: true, position: "bottom-center" });
+                toast.error(toCustomerErrorMessage(error), { closeButton: true, position: "bottom-center" });
             }            
         }
         fetchData();

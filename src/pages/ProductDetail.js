@@ -6,6 +6,7 @@ import { Rating } from "../components";
 import { useCart } from "../context";
 import { getProduct } from "../services";
 import { getPrimaryProductImage, handleProductImageError } from "../utils/productImage";
+import { toCustomerErrorMessage } from "../utils/errorMessage";
 
 export const ProductDetail = () => {
   const { cartList, addToCart, removeFromCart } = useCart();
@@ -20,7 +21,7 @@ export const ProductDetail = () => {
         const data = await getProduct(id);
         setProduct(data);
       } catch(error){
-        toast.error(error.message, {closeButton: true, position: "bottom-center" });
+        toast.error(toCustomerErrorMessage(error), {closeButton: true, position: "bottom-center" });
       }      
     }
     fetchProducts();
