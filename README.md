@@ -83,6 +83,10 @@ npm run build
 
 ## Deployment (Capstone `dev`)
 
+### Live URLs
+- Primary: `https://courageous-mandazi-0dc284.netlify.app/`
+- Alternate: `https://agent-69938da594e50bb--courageous-mandazi-0dc284.netlify.app/`
+
 ### Backend on Render
 1. In Render, create a new Web Service from this repository.
 2. Use Blueprint (`render.yaml`) or set manually:
@@ -107,4 +111,5 @@ npm run build
 
 ### Notes
 - Frontend and backend must use separate hosts in production (Netlify + Render).
+- Initial data loading may take up to 5 minutes while the Render backend wakes up.
 - Keep real secrets only in platform environment settings, never in committed `.env` files.
