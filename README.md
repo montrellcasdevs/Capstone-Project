@@ -46,6 +46,8 @@ Create `server/.env`:
 ```env
 MONGODB_URI=your_mongodb_uri
 JWT_SECRET=your_jwt_secret
+GUEST_EMAIL=guest@example.com
+GUEST_PASSWORD=your_strong_guest_password
 PORT=8000
 NODE_ENV=development
 ```
@@ -53,8 +55,6 @@ NODE_ENV=development
 Create `.env` in project root:
 ```env
 REACT_APP_HOST=http://localhost:8000
-REACT_APP_GUEST_LOGIN=guest@example.com
-REACT_APP_GUEST_PASSWORD=guest123
 ```
 
 ### 4) Run backend

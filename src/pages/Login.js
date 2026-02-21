@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { useTitle } from "../hooks/useTitle";
-import { login } from "../services";
+import { login, loginGuest } from "../services";
 import { toCustomerErrorMessage } from "../utils/errorMessage";
 
 export const Login = () => {
@@ -26,14 +26,8 @@ export const Login = () => {
   }
   
   async function handleLoginGuest(){
-    email.current.value = process.env.REACT_APP_GUEST_LOGIN;
-    password.current.value = process.env.REACT_APP_GUEST_PASSWORD;
     try{
-      const authDetail = {
-        email: email.current.value,
-        password: password.current.value
-      }
-      const data = await login(authDetail);
+      const data = await loginGuest();
       data.accessToken ? navigate("/products") : toast.error("Guest login is unavailable right now. Please try again.");
     } catch(error){
       toast.error(toCustomerErrorMessage(error), {closeButton: true, position: "bottom-center"});

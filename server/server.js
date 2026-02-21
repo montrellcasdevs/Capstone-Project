@@ -11,6 +11,10 @@ const protectedRoutes = require('./routes/protected');
 const app = express();
 const PORT = process.env.PORT || 8000;
 
+if (!process.env.JWT_SECRET) {
+    throw new Error('JWT_SECRET is required');
+}
+
 // Connect to MongoDB
 connectDB();
 

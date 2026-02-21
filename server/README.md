@@ -37,7 +37,7 @@
    - Go to "Database" in the left sidebar
    - Click "Connect" on your cluster
    - Choose "Connect your application"
-   - Copy the connection string (it looks like: `mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/`)
+   - Copy the Atlas connection string (do not paste credentials into documentation)
 
 ### 2. Backend Installation
 
@@ -60,16 +60,15 @@ notepad .env
 Edit the `.env` file with your actual credentials:
 
 ```env
-MONGODB_URI=mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@YOUR_CLUSTER.mongodb.net/bookstore?retryWrites=true&w=majority
+MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_random_long_secret_key_here
+GUEST_EMAIL=guest@example.com
+GUEST_PASSWORD=your_strong_guest_password
 PORT=8000
 NODE_ENV=development
 ```
 
-**Important:** Replace:
-- `YOUR_USERNAME` - Your MongoDB Atlas database user
-- `YOUR_PASSWORD` - Your database user password (URL encode special characters)
-- `YOUR_CLUSTER` - Your cluster name from Atlas
+**Important:** Keep `JWT_SECRET` and `GUEST_PASSWORD` only in server environment settings and never in frontend `.env` files.
 
 ### 4. Seed the Database
 
@@ -113,6 +112,7 @@ npm start
 - `GET /444/products/:id` - Get single product
 - `GET /444/featured_products` - Get featured products
 - `POST /login` - User login
+- `POST /login/guest` - Guest login (server-managed credentials)
 - `POST /register` - User registration
 
 ### Protected Routes (require JWT token)

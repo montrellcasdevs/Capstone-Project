@@ -217,8 +217,13 @@ async function seedDatabase() {
 
         // Ensure guest user exists for frontend Guest Login
         const guestEmail = process.env.GUEST_EMAIL || 'guest@example.com';
-        const guestPassword = process.env.GUEST_PASSWORD || 'guest123';
+        const guestPassword = process.env.GUEST_PASSWORD;
         const guestName = process.env.GUEST_NAME || 'Guest User';
+
+        if (!guestPassword) {
+          throw new Error('GUEST_PASSWORD is required to seed the guest user securely.');
+        }
+
         const hashedPassword = await bcrypt.hash(guestPassword, 10);
 
         await User.findOneAndUpdate(
